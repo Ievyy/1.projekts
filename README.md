@@ -1,2 +1,2 @@
 # 1.projekts
-Viss slikti!!!
+Viss slikti!
