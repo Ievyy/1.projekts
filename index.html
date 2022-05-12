@@ -9,8 +9,8 @@
 <body>
     <h1>Cik ātrs tu esi!</h1>
     <p>uzspied uz pirmā attēla,pēc tam pēc iespējas atrāk noklikšķini uz otrā attēla,lai noskaidrotu savu reākcijas ātrumu</p>
-    <p>Tavs laiks:<span id="tavs laiks">te būs redzams laiks</span></p>
-    <div id="attels" style="position: absolute;"></div>
+    <p>Tavs Laiks:<span id="tavsLaiks">te būs redzams laiks</span></p>
+    <div id="attels" style="position: absolute;width:200px;height:200px; height:200px"></div>
 
     <script>
           var sakums;//piefiksē sākuma laiku 
@@ -25,11 +25,36 @@
 
               document.getElementById("attels").style.top=top+"px";
               document.getElementById("attels").style.left=left+"px";
-              document.getElementById("attels").style.backgroundColor="green";
+              //document.getElementById("attels").style.backgroundColor="yellow";
               document.getElementById("attels").style.display="block";
               console.log("hei!");
+              sakums=new Date().getTime();//piefikse pirmā attēla parādīšanas laiku
+              console.log(sakums);
+             
+              if(!game){
+                  game=true;//pasludina spēli par sākušos
+                  bilde.innerHTML="<img src='mem.png' width=300px>"
+                  document.getElementById("attels").onclick=function(){
+                      paradies();
+                  }
+              } 
+              else{
+                  game=false;// partrauc spēli
+                  bilde.innerHTML="<img src='boy.png' width=300px>"// parada attela laiku
+                  document.getElementById("attels").onclick=function(){
+                     document.getElementById("attels").style.display="none";// Paslēpj attela bloku
+                     beigas=new Date().getTime();//piefiksē spēles beigu laiku
+                     var mansLaiks=(beigas-sakums)/1000;//aprekina reakcijas laiku
+                     document.getElementById("tavsLaiks").innerHTML=mansLaiks+"s";
+              }
              }
-          paradies();
+
+            }
+             //funkcija,kas parada bloku pec nejausi izveleta laika
+             function bulba(){
+                   setTimeout(paradies,Math.random()*2000);
+             }
+          bulba();
     </script>  
 </body>
 </html>
